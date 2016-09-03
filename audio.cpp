@@ -5,10 +5,10 @@
 
 int main () {
 
-  int duration=1;
-  const int amplitude=UINT8_MAX;
-  int frequency=200;
-  const double pi = acos(-1);
+  int duration=1;                                           //Tone duration
+  const int amplitude=UINT8_MAX;                            //Tone amplitude
+  int frequency=200;                                        //Tone frequency
+  const double pi = acos(-1);                               //Pi
   const uint32_t ChunkID = 0x46464952;                      //Contains the letters "RIFF" in ASCII form (0x52494646 big-endian form).
   const uint32_t Format = 0x45564157;                       //Contains the letters "WAVE" (0x57415645 big-endian form).
   const uint32_t Subchunk1ID = 0x20746d66;                  //Contains the letters "fmt " (0x666d7420 big-endian form)
@@ -21,10 +21,10 @@ int main () {
 
   printf("Digite a frequência do som em Hz: ");
   scanf("%d", &frequency);
-  printf("Digite a duração do som em segundos: ");
-  scanf("%d", &duration);
-  printf("Digite o sampling rate em Hz: ");
-  scanf("%d", &SampleRate);                                 //SampleRate
+  //printf("Digite a duração do som em segundos: ");
+  //scanf("%d", &duration);
+  //printf("Digite o sampling rate em Hz: ");
+  //scanf("%d", &SampleRate);                                 //SampleRate
 
   const uint32_t NumSamples = SampleRate*duration;
   const uint32_t ByteRate = SampleRate*NumChannels*BitsPerSample/8;

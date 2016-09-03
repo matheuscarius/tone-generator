@@ -5,7 +5,7 @@
 
 int main () {
 
-  int duration=1;                                           //Tone duration
+  int duration=2;                                           //Tone duration
   const int amplitude=UINT8_MAX;                            //Tone amplitude
   int frequency=200;                                        //Tone frequency
   const double pi = acos(-1);                               //Pi
@@ -52,13 +52,24 @@ int main () {
   //write data subchunk
   fwrite(&Subchunk2ID,4,1,f);  //NumChannels * BitsPerSample/8
   fwrite(&Subchunk2Size,4,1,f);  //NumChannels * BitsPerSample/8
+  //Sine Wave
   for(int i = 0; i < duration; i++) {
     for(int j = 0; j < SampleRate; j++) {
       double t = i+j/(double)SampleRate;
       uint8_t x = (uint8_t) amplitude*(1+cos(2*pi*frequency*t))/2;
       fwrite(&x,1,1,f);
+      //fprintf(stderr,"%d\n", x);
     }
   }
+  //Square Wave
+  /*for(int i = 0; i < duration; i++) {
+    for(int j = 0; j < SampleRate; j++) {
+      double t = i+j/(double)SampleRate;
+      uint8_t x = (uint8_t) amplitude*(1+lround(cos(2*pi*frequency*t)))/2;
+      fwrite(&x,1,1,f);
+      //fprintf(stderr,"%d\n", x);
+    }
+  }*/
   fclose(f);
   char cmd[255];
   sprintf(cmd,"aplay -r %d audio.wav",SampleRate);

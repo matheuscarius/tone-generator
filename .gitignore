@@ -1,0 +1,6 @@
+#Sound Files
+*.wav
+*.raw
+
+#Executables
+*.out
